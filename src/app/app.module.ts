@@ -7,16 +7,22 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CourseServiceClient } from './services/course.service.client';
 import { CourseListComponent } from './course-list/course-list.component';
+import {routing} from './app.routing';
+import { CourseViewerComponent } from './course-viewer/course-viewer.component';
+import { ModuleListComponent } from './module-list/module-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     CourseListComponent,
+    CourseViewerComponent,
+    ModuleListComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   providers: [CourseServiceClient],
   bootstrap: [AppComponent]
