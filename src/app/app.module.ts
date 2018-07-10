@@ -10,6 +10,7 @@ import { CourseListComponent } from './course-list/course-list.component';
 import {routing} from './app.routing';
 import { CourseViewerComponent } from './course-viewer/course-viewer.component';
 import { ModuleListComponent } from './module-list/module-list.component';
+import {ModuleServiceClient} from './services/module.service.client';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,10 @@ import { ModuleListComponent } from './module-list/module-list.component';
     FormsModule,
     routing
   ],
-  providers: [CourseServiceClient],
+  providers: [
+    CourseServiceClient,
+    ModuleServiceClient
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
