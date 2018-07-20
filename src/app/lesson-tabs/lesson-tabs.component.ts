@@ -18,12 +18,15 @@ export class LessonTabsComponent implements OnInit {
   moduleId;
   lessonId;
   lessons = [];
+  // dataLoaded = false;
 
   setParams(params) {
     this.courseId = params['courseId'];
     this.moduleId = params['moduleId'];
     this.lessonId = params['lessonId'];
-    this.loadLessons(this.moduleId);
+    if (this.moduleId) {
+      this.loadLessons(this.moduleId);
+    }
   }
 
   loadLessons(moduleId) {
