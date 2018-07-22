@@ -19,18 +19,12 @@ export class TopicListComponent implements OnInit {
   lessonId;
   topicId;
   topics = [];
-  // dataLoaded = false;
 
   setParams(params) {
     this.courseId = params['courseId'];
     this.moduleId = params['moduleId'];
     this.lessonId = params['lessonId'];
     this.topicId = params['topicId'];
-    // if (typeof (this.lessonId) === undefined) {
-    //   this.dataLoaded = false;
-    // } else {
-    //   this.dataLoaded = true;
-    // }
     if (this.lessonId) {
       this.loadTopics(this.lessonId);
     }
@@ -39,7 +33,7 @@ export class TopicListComponent implements OnInit {
   loadTopics (lessonId) {
     this.lessonId = lessonId;
     this.service.findTopicsForLesson(lessonId)
-      .then(topics => {this.topics = topics; console.log(topics); } );
+      .then(topics => this.topics = topics );
   }
 
   ngOnInit() {

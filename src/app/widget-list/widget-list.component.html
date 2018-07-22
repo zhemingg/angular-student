@@ -1,0 +1,39 @@
+<div>
+  <div *ngFor="let widget of widgets">
+    <div *ngIf="widget.widgetType === 'Heading Widget' && widget.size === '1'">
+      <h1>{{widget.text}}</h1>
+    </div>
+    <div *ngIf="widget.widgetType === 'Heading Widget' && widget.size === '2'">
+      <h2>{{widget.text}}</h2>
+    </div>
+    <div *ngIf="widget.widgetType === 'Heading Widget' && widget.size === '3'">
+      <h3>{{widget.text}}</h3>
+    </div>
+
+    <div *ngIf="widget.widgetType === 'Paragraph Widget'">
+      {{widget.text}}
+    </div>
+
+    <div *ngIf="widget.widgetType === 'List Widget' && widget.listType === 'ordered'">
+      <ol>
+        <li *ngFor="let line of widget.listItems.split('\n')">{{line}}</li>
+      </ol>
+    </div>
+
+    <div *ngIf="widget.widgetType === 'List Widget' && widget.listType === 'unordered'">
+      <ul>
+        <li *ngFor="let line of widget.listItems.split('\n')">{{line}}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="widget.widgetType === 'Image Widget'">
+      <img src={{widget.src}}/>
+    </div>
+
+    <div *ngIf="widget.widgetType === 'Link Widget'">
+      <a href={{widget.href}}>{{widget.text}}</a>
+    </div>
+  </div>
+
+
+</div>

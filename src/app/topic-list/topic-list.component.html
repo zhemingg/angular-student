@@ -1,12 +1,23 @@
-<ul class="list-group">
-  <li *ngFor="let topic of topics"
-      class="nav-item">
-    <a class="nav-link"
-       [ngClass]="{'active': topic.id == topicId}"
-       routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lessonId}}/topic/{{topic.id}}">
-      {{topic.title}}
-    </a>
-  </li>
-</ul>
+<!--<ul class="list-group">-->
+  <!--<li *ngFor="let topic of topics"-->
+      <!--class="list-group-item active">-->
+    <!--<a class="nav-link"-->
+       <!--[ngClass]="{'active': topic.id == topicId}"-->
+       <!--routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lessonId}}/topic/{{topic.id}}">-->
+      <!--{{topic.title}}-->
+    <!--</a>-->
+  <!--</li>-->
+<!--</ul>-->
 
-<!--<app-widget-list></app-widget-list>-->
+
+    <ul class="list-group">
+      <li class="list-group-item active">Topic</li>
+      <li [ngClass]="{'active': topic.id == topicId}" *ngFor="let topic of topics"
+          class="list-group-item wbdv">
+        <a routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lessonId}}/topic/{{topic.id}}">
+          {{topic.title}}</a>
+      </li>
+    </ul>
+
+
+<app-widget-list></app-widget-list>
