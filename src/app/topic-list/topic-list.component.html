@@ -11,13 +11,11 @@
 
 
     <ul class="list-group">
-      <li class="list-group-item active">Topic</li>
       <li [ngClass]="{'active': topic.id == topicId}" *ngFor="let topic of topics"
           class="list-group-item wbdv">
         <a routerLink="/course/{{courseId}}/module/{{moduleId}}/lesson/{{lessonId}}/topic/{{topic.id}}">
           {{topic.title}}</a>
       </li>
     </ul>
-
 
 <app-widget-list></app-widget-list>
