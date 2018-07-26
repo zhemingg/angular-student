@@ -20,10 +20,17 @@ export class RegisterComponent implements OnInit {
       alert('The passwords do not match');
       return;
     }
-    this.service
-      .createUser(username, password)
-      .then(() =>
-        this.router.navigate(['profile']));
+    this.service.findUserByUsername(username).then(res => {
+      if (res !== null) {
+        alert('Username has been taken');
+        return;
+      } else {
+        this.service
+          .createUser(username, password)
+          .then(() =>
+            this.router.navigate(['profile']));
+      }
+    });
   }
 
   ngOnInit() {

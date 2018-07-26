@@ -13,12 +13,23 @@ export class LoginComponent implements OnInit {
   password;
   login(username, password) {
     // console.log([username, password]);
-    this.service
-      .login(username, password)
-      .then((res) => {
-        console.log(res);
-        this.router.navigate(['profile']);
-      });
+    if (!(username && password)) {
+      alert('Password and username required');
+      return;
+    } else {
+      this.service
+        .login(username, password)
+        .then(response => {
+          return response.json();
+        })
+        .then((user) => {
+          if (user.error) {
+            alert('User do not exist or password is incorrect');
+          } else {
+            this.router.navigate(['profile']);
+          }
+        });
+    }
   }
 
   constructor(private router: Router,
