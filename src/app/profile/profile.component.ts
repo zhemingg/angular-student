@@ -15,13 +15,14 @@ export class ProfileComponent implements OnInit {
               // private sectionService: SectionServiceClient,
               private router: Router) { }
 
-  user = {};
-  username;
-  password;
+  user = new User;
+  isAdmin = false;
+
   sections = [];
 
-  update(user) {
-    console.log(user);
+  update() {
+    console.log(this.user);
+    this.service.updateUser(this.user).then(() => alert('Updated Successfully'));
   }
 
   logout() {
@@ -32,11 +33,19 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  initialUser() {
     this.service
       .profile()
-      .then(user =>
-        this.username = user.username);
+      .then(user => {
+        this.user = user;
+        if (user.username === 'admin' && user.password === 'admin') {
+          this.isAdmin = true;
+        }
+      });
+  }
+
+  ngOnInit() {
+    this.initialUser();
 
     // this.sectionService
     //   .findSectionsForStudent()
