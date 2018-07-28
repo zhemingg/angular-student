@@ -30,6 +30,10 @@
     <li *ngFor="let enrollment of sections" class="list-group-item">
       {{enrollment.section.name}}
       ({{enrollment.section.seats}})
+      <button class="btn btn-danger"
+      (click)="unenrollment(user._id, enrollment.section._id)">
+        un-enroll
+      </button>
     </li>
   </ul>
   <a *ngIf="isAdmin" routerLink="/admin">Admin</a>
