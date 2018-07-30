@@ -21,13 +21,19 @@ export class SectionListComponent implements OnInit {
   seats = '';
   courseId = '';
   sections = [];
-  studentId = '';
+  student = '';
+  isUpdating = false;
+  updatingSectionName;
+  updatingSectionSeat = 0;
+  updatingSectionId;
 
   loadSections(courseId) {
-    this.courseId = courseId;
-    this.service
-      .findSectionsForCourse(courseId)
-      .then(sections => this.sections = sections);
+    if (courseId) {
+      this.courseId = courseId;
+      this.service
+        .findSectionsForCourse(courseId)
+        .then(sections => this.sections = sections);
+    }
   }
 
   createSection(sectionName, seats) {
@@ -35,16 +41,17 @@ export class SectionListComponent implements OnInit {
       .service
       .createSection(this.courseId, sectionName, seats)
       .then(() => {
+        alert('Successfully created');
         this.loadSections(this.courseId);
       });
   }
 
   enroll(section) {
-    if (this.studentId === '') {
+    if (this.student === '') {
       alert('Please log in');
     } else {
       this.service
-        .enrollStudentInSection(this.studentId, section._id)
+        .enrollStudentInSection(this.student._id, section._id)
         .then((res) => res.json())
         .then(result => {
           if (result.error) {
@@ -61,9 +68,40 @@ export class SectionListComponent implements OnInit {
         .profile()
         .then(user => {
           if (user !== undefined) {
-            this.studentId = user._id;
+            this.student = user;
           }
         });
+  }
+
+  updateSection(section) {
+    this.isUpdating = !this.isUpdating;
+    this.updatingSectionName = section.name;
+    this.updatingSectionSeat = section.seats;
+    this.updatingSectionId = section._id;
+  }
+
+  saveUpdate() {
+    const newSection = {
+      _id: this.updatingSectionId,
+      name : this.updatingSectionName,
+      seats : this.updatingSectionSeat
+    };
+    this.service
+      .updateSection(newSection)
+      .then(() => {
+        this.isUpdating = false;
+        alert('Successfully updated');
+        this.loadSections(this.courseId);
+      });
+  }
+
+  deleteSection(section) {
+    this.service
+      .deleteSection(section)
+      .then(() => {
+        alert('Successfully deleted');
+        this.loadSections(this.courseId);
+      });
   }
 
 }

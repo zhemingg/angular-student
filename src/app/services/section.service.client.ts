@@ -43,4 +43,26 @@ export class SectionServiceClient {
       }
     });
   }
+
+  updateSection(newSection) {
+    return fetch('http://localhost:3000/api/section/' + newSection._id, {
+      method: 'put',
+      body: JSON.stringify(newSection),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+  }
+
+  deleteSection(section) {
+    return fetch('http://localhost:3000/api/section/' + section._id, {
+      method: 'delete',
+      body: JSON.stringify(section),
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+  }
 }
