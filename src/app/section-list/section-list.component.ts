@@ -60,16 +60,25 @@ export class SectionListComponent implements OnInit {
 
   }
 
+  hasEnrolled(sections) {
+    sections.forEach(section => {
+      if (section.courseId === this.courseId){
+        return true;
+      }
+    })
+    return false;
+  }
+
   enroll(section) {
     // console.log(this.student);
     if (this.student.error) {
       alert(this.student.error);
     } else {
-      this.service
-        .hasEnrollment(this.student._id, section._id, this.courseId)
-        .then(res => {
-          console.log(res);
-          if (res.length === 0) {
+      this.service.findSectionsForStudent(this.student._id)
+        .then(sections => {
+          if (this.hasEnrolled(this.sections)) {
+            alert('You has been enrolled in this course');
+          } else {
             this.service
               .enrollStudentInSection(this.student._id, section._id)
               .then(temp => temp.json())
@@ -80,11 +89,8 @@ export class SectionListComponent implements OnInit {
                   this.router.navigate(['profile']);
                 }
               });
-          } else {
-            alert('You have been enrolled');
           }
         });
-
     }
   }
 
