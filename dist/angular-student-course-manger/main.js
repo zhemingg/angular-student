@@ -1234,6 +1234,7 @@ var SectionListComponent = /** @class */ (function () {
             console.log(section.courseId);
             console.log(section.courseId === _this.courseId);
             if (section.courseId === _this.courseId) {
+                console.log('here');
                 return true;
             }
         });
@@ -1248,6 +1249,8 @@ var SectionListComponent = /** @class */ (function () {
         else {
             this.service.findSectionsForStudent(this.student._id)
                 .then(function (sections) {
+                console.log(sections);
+                console.log(_this.hasEnrolled(sections));
                 if (_this.hasEnrolled(sections)) {
                     alert('You has been enrolled in this course');
                 }
