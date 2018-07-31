@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user.model.client';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 import {SectionServiceClient} from '../services/section.service.client';
+import {CourseServiceClient} from '../services/course.service.client';
+
 
 @Component({
   selector: 'app-profile',
@@ -13,12 +15,15 @@ export class ProfileComponent implements OnInit {
 
   constructor(private service: UserServiceClient,
               private sectionService: SectionServiceClient,
-              private router: Router) { }
+              private courseService: CourseServiceClient,
+              private router: Router) {
+  }
 
   user = new User;
   isAdmin = false;
 
   sections = [];
+  courses = [];
 
   update() {
     // console.log(this.user);
@@ -38,7 +43,6 @@ export class ProfileComponent implements OnInit {
       .unenrollStudentInSection(userId, sectionId)
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         if (res.error) {
           alert(res.error);
         } else {
@@ -49,7 +53,8 @@ export class ProfileComponent implements OnInit {
                 alert(sections.error);
               } else {
                 this.sections = sections;
-                alert('Un-enrollment successfully')
+                this.findEnrolledCourses(sections);
+                alert('Un-enrollment successfully');
               }
             });
         }
@@ -61,7 +66,7 @@ export class ProfileComponent implements OnInit {
       .profile()
       .then(user => {
         if (user.error) {
-          alert ('You have logged out!');
+          alert('You have logged out!');
         } else {
           this.user = user;
           if (user.username === 'admin' && user.password === 'admin') {
@@ -71,14 +76,39 @@ export class ProfileComponent implements OnInit {
           this.sectionService
             .findSectionsForStudent(user._id)
             .then(sections => {
+              // console.log(sections);
               if (sections.error) {
                 alert(sections.error);
               } else {
                 this.sections = sections;
+                this.findEnrolledCourses(sections);
               }
             });
         }
       });
+  }
+
+  findEnrolledCourses(sections) {
+        this.courses = new Array();
+        sections.forEach(section => {
+          this.courseService.findCourseById(section.section.courseId)
+            .then(course => {this.courses.push(course); console.log(this.courses)});
+        });
+  }
+
+  DeleteUser() {
+    if (confirm('Are you sure to cancel the account ? It can not be retrieved again')) {
+      this.service
+        .deleteUser(this.user)
+        .then(res => res.json())
+        .then(res => {
+          if (res.err) {
+            alert(res.err);
+          } else {
+            this.router.navigate(['login']);
+          }
+        });
+    }
   }
 
   ngOnInit() {

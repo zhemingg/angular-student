@@ -1,6 +1,7 @@
 <div class="container-fluid">
-  <h2>Sections for course: {{courseId}}</h2>
-  <div *ngIf="student.username === 'admin' && student.password === 'admin' && courseId">
+  <h2 *ngIf="course">Sections for course: {{course.title}}</h2>
+  <h4  *ngIf=" student && student.username !== 'admin'"> Note: you can just register only one section for per course</h4>
+  <div *ngIf="student && student.username === 'admin' && student.password === 'admin' && courseId">
     <input [(ngModel)]="sectionName"
            placeholder="Section Name"
            class="form-control">
@@ -28,18 +29,20 @@
     <li *ngFor="let section of sections" class="list-group-item">
       Name:{{section.name}}   Available Seats:{{section.seats}}
       <button (click)="enroll(section)"
-              *ngIf="student.username !== 'admin'"
+              *ngIf=" student && student.username !== 'admin'"
               class="float-right btn btn-primary">Enroll</button>
       <button class="btn btn-warning"
               (click)="updateSection(section)"
-              *ngIf="student.username === 'admin'">
+              *ngIf="student && student.username === 'admin'">
         Update
       </button>
       <button class="btn btn-danger"
               (click)="deleteSection(section)"
-              *ngIf="student.username === 'admin'">
+              *ngIf="student && student.username === 'admin'">
         Delete
       </button>
     </li>
   </ul>
+
+  <a routerLink="/profile">Go Back To Profile</a>
 </div>

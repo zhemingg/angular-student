@@ -1,43 +1,58 @@
 <div class="container-fluid">
   <h1>Profile</h1>
 
+  <div id="links" class = "row">
+    <a *ngIf="isAdmin" routerLink="/admin">Admin</a>
+    <a routerLink="/home">Home Page</a>
+  </div>
+
   <input [(ngModel)]="user.username"
          placeholder="username"
-         class="form-control"/>
+         class="form-control input" readonly/>
   <input [(ngModel)]="user.firstName"
          placeholder="first name"
-         class="form-control"/>
+         class="form-control input"/>
   <input [(ngModel)]="user.lastName"
          placeholder="lastName"
-         class="form-control"/>
+         class="form-control input"/>
   <input [(ngModel)]="user.email"
          placeholder="email"
-         class="form-control"/>
+         class="form-control input"/>
   <input [(ngModel)]="user.phoneNumber"
          placeholder="phone"
-         class="form-control"/>
+         class="form-control input"/>
   <input [(ngModel)]="user.address"
          placeholder="address"
-         class="form-control"/>
+         class="form-control input"/>
   <button (click)="update()"
-          class="btn btn-primary btn-block">
+          class="float-right btn btn-primary btn-block input">
     Update
   </button>
 
-  <h2>Sections ({{sections.length}})</h2>
+  <h2 style="margin-top: 20px">Enrolled Courses - total: ({{courses.length}})</h2>
+  <ul class="list-group">
+    <li *ngFor="let course of courses" class="list-group-item">
+      {{course.title}}
+      <a routerLink="/course/{{course.id}}" style="margin-left: 20px">See More About Course</a>
+      <a routerLink="/course/{{course.id}}/section" style="margin-left: 20px">See Sections</a>
+    </li>
+  </ul>
 
+  <h2 style="margin-top: 20px">Enrolled Sections - total: ({{sections.length}})</h2>
   <ul class="list-group">
     <li *ngFor="let enrollment of sections" class="list-group-item">
-      {{enrollment.section.name}}
-      ({{enrollment.section.seats}})
+      Section Name:{{enrollment.section.name}}
+      Available Seats:({{enrollment.section.seats}})
       <button class="btn btn-danger"
-      (click)="unenrollment(user._id, enrollment.section._id)">
+              (click)="unenrollment(user._id, enrollment.section._id)">
         un-enroll
       </button>
     </li>
   </ul>
-  <a *ngIf="isAdmin" routerLink="/admin">Admin</a>
-  <a (click)="logout()">Logout</a>
-  <a routerLink="/home">Home</a>
+
+  <div id="buttons" class = "row">
+    <button class="btn btn-danger" (click)="DeleteUser()">Delete Profile</button>
+    <button (click)="logout()" class="btn btn-primary">Logout</button>
+  </div>
 
 </div>

@@ -65,4 +65,11 @@ export class SectionServiceClient {
       }
     });
   }
+
+  hasEnrollment(studentId, sectionId, courseId) {
+    return fetch('http://localhost:3000/api/student/' + studentId + '/course/' + courseId + '/section/' + sectionId, {
+      credentials: 'include',
+    })
+      .then(res => res.json());
+  }
 }

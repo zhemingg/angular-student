@@ -45,7 +45,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:3000/api/user', {
+    return fetch('http://localhost:3000/api/register', {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'post',
@@ -60,6 +60,17 @@ export class UserServiceClient {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'put',
+      headers: {
+        'content-type': 'application/json'
+      }
+    });
+  }
+
+  deleteUser(user) {
+    return fetch('http://localhost:3000/api/profile', {
+      body: JSON.stringify(user),
+      credentials: 'include', // include, same-origin, *omit
+      method: 'delete',
       headers: {
         'content-type': 'application/json'
       }

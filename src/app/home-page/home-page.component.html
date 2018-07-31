@@ -1,11 +1,37 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <Span class="navbar-brand disabled">White Board</Span>
+    <div class='row flex-lg-row'>
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a routerLink="/login" class="nav-link">Login <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a routerLink="/register" class="nav-link">Register <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/quizzes" class="nav-link disabled">Quizzes</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<div class="container-fluid">
-  <h1>
-    White Board
-  </h1>
+  <div class="container-fluid">
+    <div *ngIf="isLoggedIn" style="margin-top: 10px; margin-bottom: 10px">
+      <h3>Current User: {{user.username}}</h3>
+      <h4>Enrolled course: {{enrolledCourse.length}}</h4>
+      <div *ngFor="let course of enrolledCourse" class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{course.title}}</h5>
+            <a routerLink="/course/{{course.id}}"
+               class="btn btn-primary"
+               style="margin-right: 10px">See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <a routerLink="/login">Login</a>
-  <a routerLink="/register">Register</a>
-  <a routerLink="/quizzes">Quizzes</a>
   <app-course-list></app-course-list>
 </div>
