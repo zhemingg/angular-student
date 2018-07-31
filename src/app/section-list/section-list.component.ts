@@ -64,6 +64,7 @@ export class SectionListComponent implements OnInit {
     console.log(this.courseId);
     sections.forEach(section => {
       console.log(section.courseId);
+      console.log(section.courseId === this.courseId);
       if (section.courseId === this.courseId) {
         return true;
       }

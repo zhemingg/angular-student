@@ -1232,6 +1232,7 @@ var SectionListComponent = /** @class */ (function () {
         console.log(this.courseId);
         sections.forEach(function (section) {
             console.log(section.courseId);
+            console.log(section.courseId === _this.courseId);
             if (section.courseId === _this.courseId) {
                 return true;
             }
