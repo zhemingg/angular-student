@@ -1407,24 +1407,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SectionServiceClient", function() { return SectionServiceClient; });
 var SectionServiceClient = /** @class */ (function () {
     function SectionServiceClient() {
-        this.SECTION_URL = 'http://localhost:3000/api/course/COURSEID/section';
+        this.SECTION_URL = 'https://zhemingg-node-student.herokuapp.com/api/course/COURSEID/section';
     }
     SectionServiceClient.prototype.findSectionsForStudent = function (studentId) {
-        var url = 'http://localhost:3000/api/student/' + studentId + '/section';
+        var url = 'https://zhemingg-node-student.herokuapp.com/api/student/' + studentId + '/section';
         return fetch(url, {
             credentials: 'include'
         })
             .then(function (response) { return response.json(); });
     };
     SectionServiceClient.prototype.enrollStudentInSection = function (studentId, sectionId) {
-        var url = 'http://localhost:3000/api/student/' + studentId + '/section/' + sectionId;
+        var url = 'https://zhemingg-node-student.herokuapp.com/api/student/' + studentId + '/section/' + sectionId;
         return fetch(url, {
             method: 'post',
             credentials: 'include'
         });
     };
     SectionServiceClient.prototype.unenrollStudentInSection = function (studentId, sectionId) {
-        var url = 'http://localhost:3000/api/student/' + studentId + '/section/' + sectionId;
+        var url = 'https://zhemingg-node-student.herokuapp.com/api/student/' + studentId + '/section/' + sectionId;
         return fetch(url, {
             method: 'delete',
             credentials: 'include'
@@ -1447,7 +1447,7 @@ var SectionServiceClient = /** @class */ (function () {
         });
     };
     SectionServiceClient.prototype.updateSection = function (newSection) {
-        return fetch('http://localhost:3000/api/section/' + newSection._id, {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/section/' + newSection._id, {
             method: 'put',
             body: JSON.stringify(newSection),
             credentials: 'include',
@@ -1457,7 +1457,7 @@ var SectionServiceClient = /** @class */ (function () {
         });
     };
     SectionServiceClient.prototype.deleteSection = function (section) {
-        return fetch('http://localhost:3000/api/section/' + section._id, {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/section/' + section._id, {
             method: 'delete',
             body: JSON.stringify(section),
             credentials: 'include',
@@ -1467,7 +1467,7 @@ var SectionServiceClient = /** @class */ (function () {
         });
     };
     SectionServiceClient.prototype.hasEnrollment = function (studentId, sectionId, courseId) {
-        return fetch('http://localhost:3000/api/student/' + studentId + '/course/' + courseId + '/section/' + sectionId, {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/student/' + studentId + '/course/' + courseId + '/section/' + sectionId, {
             credentials: 'include',
         })
             .then(function (res) { return res.json(); });
@@ -1517,11 +1517,11 @@ var UserServiceClient = /** @class */ (function () {
     function UserServiceClient() {
     }
     UserServiceClient.prototype.findUserById = function (userId) {
-        return fetch('http://localhost:3000/api/user/' + userId)
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/user/' + userId)
             .then(function (response) { return response.json(); });
     };
     UserServiceClient.prototype.findUserByUsername = function (username) {
-        return fetch('http://localhost:3000/api/users/' + username)
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/users/' + username)
             .then(function (response) { return response.json(); });
     };
     UserServiceClient.prototype.login = function (username, password) {
@@ -1529,7 +1529,7 @@ var UserServiceClient = /** @class */ (function () {
             username: username,
             password: password
         };
-        return fetch('http://localhost:3000/api/login', {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/login', {
             method: 'post',
             body: JSON.stringify(credentials),
             credentials: 'include',
@@ -1539,13 +1539,13 @@ var UserServiceClient = /** @class */ (function () {
         });
     };
     UserServiceClient.prototype.logout = function () {
-        return fetch('http://localhost:3000/api/logout', {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/logout', {
             method: 'post',
             credentials: 'include'
         });
     };
     UserServiceClient.prototype.profile = function () {
-        return fetch('http://localhost:3000/api/profile', {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/profile', {
             credentials: 'include',
         })
             .then(function (response) { return response.json(); });
@@ -1555,7 +1555,7 @@ var UserServiceClient = /** @class */ (function () {
             username: username,
             password: password
         };
-        return fetch('http://localhost:3000/api/register', {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/register', {
             body: JSON.stringify(user),
             credentials: 'include',
             method: 'post',
@@ -1565,7 +1565,7 @@ var UserServiceClient = /** @class */ (function () {
         });
     };
     UserServiceClient.prototype.updateUser = function (user) {
-        return fetch('http://localhost:3000/api/profile', {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/profile', {
             body: JSON.stringify(user),
             credentials: 'include',
             method: 'put',
@@ -1575,7 +1575,7 @@ var UserServiceClient = /** @class */ (function () {
         });
     };
     UserServiceClient.prototype.deleteUser = function (user) {
-        return fetch('http://localhost:3000/api/profile', {
+        return fetch('https://zhemingg-node-student.herokuapp.com/api/profile', {
             body: JSON.stringify(user),
             credentials: 'include',
             method: 'delete',
