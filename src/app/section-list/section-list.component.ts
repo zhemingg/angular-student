@@ -61,8 +61,10 @@ export class SectionListComponent implements OnInit {
   }
 
   hasEnrolled(sections) {
+    console.log(this.courseId);
     sections.forEach(section => {
-      if (section.courseId === this.courseId){
+      console.log(section.courseId);
+      if (section.courseId === this.courseId) {
         return true;
       }
     })
@@ -76,7 +78,7 @@ export class SectionListComponent implements OnInit {
     } else {
       this.service.findSectionsForStudent(this.student._id)
         .then(sections => {
-          if (this.hasEnrolled(this.sections)) {
+          if (this.hasEnrolled(sections)) {
             alert('You has been enrolled in this course');
           } else {
             this.service
