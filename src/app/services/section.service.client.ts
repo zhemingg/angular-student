@@ -1,9 +1,9 @@
 export class SectionServiceClient {
 
-  SECTION_URL = 'http://localhost:3000/api/course/COURSEID/section';
+  SECTION_URL = 'https://zhemingg-node-student.herokuapp.com/api/course/COURSEID/section';
 
   findSectionsForStudent(studentId) {
-    const url = 'http://localhost:3000/api/student/' +  studentId + '/section';
+    const url = 'https://zhemingg-node-student.herokuapp.com/api/student/' +  studentId + '/section';
     return fetch(url, {
       credentials: 'include'
     })
@@ -11,7 +11,7 @@ export class SectionServiceClient {
   }
 
   enrollStudentInSection(studentId, sectionId) {
-    const url = 'http://localhost:3000/api/student/' + studentId + '/section/' + sectionId;
+    const url = 'https://zhemingg-node-student.herokuapp.com/api/student/' + studentId + '/section/' + sectionId;
     return fetch(url, {
       method: 'post',
       credentials: 'include'
@@ -19,7 +19,7 @@ export class SectionServiceClient {
   }
 
   unenrollStudentInSection(studentId, sectionId) {
-    const url = 'http://localhost:3000/api/student/' + studentId + '/section/' + sectionId;
+    const url = 'https://zhemingg-node-student.herokuapp.com/api/student/' + studentId + '/section/' + sectionId;
     return fetch(url, {
       method: 'delete',
       credentials: 'include'
@@ -45,7 +45,7 @@ export class SectionServiceClient {
   }
 
   updateSection(newSection) {
-    return fetch('http://localhost:3000/api/section/' + newSection._id, {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/section/' + newSection._id, {
       method: 'put',
       body: JSON.stringify(newSection),
       credentials: 'include',
@@ -56,7 +56,7 @@ export class SectionServiceClient {
   }
 
   deleteSection(section) {
-    return fetch('http://localhost:3000/api/section/' + section._id, {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/section/' + section._id, {
       method: 'delete',
       body: JSON.stringify(section),
       credentials: 'include',
@@ -67,7 +67,7 @@ export class SectionServiceClient {
   }
 
   hasEnrollment(studentId, sectionId, courseId) {
-    return fetch('http://localhost:3000/api/student/' + studentId + '/course/' + courseId + '/section/' + sectionId, {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/student/' + studentId + '/course/' + courseId + '/section/' + sectionId, {
       credentials: 'include',
     })
       .then(res => res.json());

@@ -1,12 +1,12 @@
 export class UserServiceClient {
 
   findUserById(userId) {
-    return fetch('http://localhost:3000/api/user/' + userId)
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/user/' + userId)
       .then(response => response.json());
   }
 
   findUserByUsername(username) {
-    return fetch('http://localhost:3000/api/users/' + username)
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/users/' + username)
       .then(response => response.json());
   }
 
@@ -15,7 +15,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:3000/api/login', {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/login', {
       method: 'post',
       body: JSON.stringify(credentials),
       credentials: 'include',
@@ -26,14 +26,14 @@ export class UserServiceClient {
   }
 
   logout() {
-    return fetch('http://localhost:3000/api/logout', {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/logout', {
       method: 'post',
       credentials: 'include'
     });
   }
 
   profile() {
-    return fetch('http://localhost:3000/api/profile',
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/profile',
       {
         credentials: 'include', // include, same-origin, *omit
       })
@@ -45,7 +45,7 @@ export class UserServiceClient {
       username: username,
       password: password
     };
-    return fetch('http://localhost:3000/api/register', {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/register', {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'post',
@@ -56,7 +56,7 @@ export class UserServiceClient {
   }
 
   updateUser(user) {
-    return fetch('http://localhost:3000/api/profile' , {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/profile' , {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'put',
@@ -67,7 +67,7 @@ export class UserServiceClient {
   }
 
   deleteUser(user) {
-    return fetch('http://localhost:3000/api/profile', {
+    return fetch('https://zhemingg-node-student.herokuapp.com/api/profile', {
       body: JSON.stringify(user),
       credentials: 'include', // include, same-origin, *omit
       method: 'delete',
