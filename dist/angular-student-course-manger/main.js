@@ -1228,16 +1228,11 @@ var SectionListComponent = /** @class */ (function () {
         }
     };
     SectionListComponent.prototype.hasEnrolled = function (sections) {
-        var _this = this;
-        console.log(this.courseId);
-        sections.forEach(function (section) {
-            console.log(section.courseId);
-            console.log(section.courseId === _this.courseId);
-            if (section.courseId === _this.courseId) {
-                console.log('here');
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].courseId === this.courseId) {
                 return true;
             }
-        });
+        }
         return false;
     };
     SectionListComponent.prototype.enroll = function (section) {
@@ -1249,7 +1244,6 @@ var SectionListComponent = /** @class */ (function () {
         else {
             this.service.findSectionsForStudent(this.student._id)
                 .then(function (sections) {
-                console.log(sections);
                 console.log(_this.hasEnrolled(sections));
                 if (_this.hasEnrolled(sections)) {
                     alert('You has been enrolled in this course');
